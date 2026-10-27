@@ -87,9 +87,10 @@ class _QuizPageState extends State<QuizPage> {
         ),
       );
 
-  Widget _questionView(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
+  Widget _questionView(BuildContext context) => SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -105,7 +106,6 @@ class _QuizPageState extends State<QuizPage> {
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold)),
           const SizedBox(height: 18),
           for (var i = 0; i < _question.options.length; i++) _answerButton(i),
-          const Spacer(),
           if (_selectedIndex != null) ...[
             Container(
               padding: const EdgeInsets.all(14),
@@ -133,7 +133,8 @@ class _QuizPageState extends State<QuizPage> {
               child: Text(_questionIndex == questions.length - 1 ? 'See results' : 'Next question'),
             ),
           ],
-        ],
+          ],
+        ),
       );
 
   Widget _answerButton(int index) {
