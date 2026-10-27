@@ -18,8 +18,9 @@ void main() {
 
     for (var i = 0; i < questions.length; i++) {
       if (i > 0) {
-        final answer = questions[i].options[questions[i].answerIndex];
-        await tester.tap(find.text(answer).first);
+        final answer = find.byType(OutlinedButton).at(questions[i].answerIndex);
+        await tester.ensureVisible(answer);
+        await tester.tap(answer);
         await tester.pumpAndSettle();
       }
       await tester.ensureVisible(find.text(i == questions.length - 1 ? 'See results' : 'Next question'));
